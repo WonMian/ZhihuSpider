@@ -46,7 +46,7 @@ def get_answer(href):  #提取每个问题下面的前10个回答
                     sex = re.findall(u'<span class="item gender.*?icon-profile-(.*?)"></i>',people.content,re.S)[0]
             except:
                 print u'无法确定性别'
-            if sex == 'female':  #判断是不是男生
+            if sex == 'male':  #判断是不是男生
                 soup = BeautifulSoup(people.content,'lxml')
                 try:
                     introduce = soup.find_all('span',{'class':'content'})[0].string.strip()
