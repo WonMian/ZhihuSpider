@@ -55,7 +55,7 @@ def login(username, password):
     输入自己的账号密码，模拟登录知乎
     """
     # 检测到11位数字则是手机登录
-    if re.match(r'\d{11}$', account):
+    if re.match(r'\d{11}$', username):
         print('使用手机登录中...')
         url = 'http://www.zhihu.com/login/phone_num'
         data = {'_xsrf': get_xsrf(),
@@ -84,12 +84,12 @@ def login(username, password):
     session.cookies.save(ignore_discard=True, ignore_expires=True)
 
 
-if __name__ == '__main__':
-    account = raw_input('输入账号：')
-    secret = raw_input('输入密码：')
+def loginAPI():
+    account = ''
+    secret = ''
     login(account, secret)
-    # 设置里面的简介页面，登录后才能查看。以此来验证确实登录成功
+        # 设置里面的简介页面，登录后才能查看。以此来验证确实登录成功
     get_url = 'https://www.zhihu.com/settings/profile'
-    # allow_redirects=False 禁止重定向
+        # allow_redirects=False 禁止重定向
     resp = session.get(get_url, headers=headers, allow_redirects=False)
-    # print(resp.text)
+        # print(resp.text)
