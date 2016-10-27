@@ -17,7 +17,7 @@ s = requests.session()
 path = os.path.abspath(os.path.dirname("FindSingleDog.py")) + '/list'
 if not os.path.isdir(path):
     os.mkdir(path)
-dog_name = path + '/' + 'WuhanMale300' + '.txt'
+dog_name = path + '/' + 'WuhanFemale300' + '.txt'
 fr = open(dog_name, 'w')
 holenum = 1
 def get_answer(href):  #提取每个问题下面的前10个回答
@@ -46,7 +46,7 @@ def get_answer(href):  #提取每个问题下面的前10个回答
 
             if int(followNum[0]) > 300:
                 sex = re.findall(u'<span class="item gender.*?icon-profile-(.*?)"></i>',people.content,re.S)[0]
-                if sex == 'male':  #判断是不是男生
+                if sex == 'female':  #判断是不是男女生
                     soup = BeautifulSoup(people.content,'lxml')
                     try:
                         introduce = soup.find_all('span',{'class':'content'})[0].string.strip()
@@ -59,7 +59,7 @@ def get_answer(href):  #提取每个问题下面的前10个回答
                     holenum += 1
         except:
             print u'无嘉宾'
-            fr.write(u"此问题下前十名没有符合条件的男嘉宾\n\n")
+            fr.write(u"此问题下前十名没有符合条件的女嘉宾\n\n")
     fr.write('\n')
 
 
